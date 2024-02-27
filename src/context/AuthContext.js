@@ -25,7 +25,7 @@ const tryLocalSignin = dispatch => async () => {
         dispatch({type: 'signin', payload: token})
         navigate('TrackList')
     } else {
-        navigate('signup')
+        navigate('Signup')
     }
 }
 
@@ -68,6 +68,3 @@ export const {Provider, Context} = createDataContext(
     {token: null, errorMessage: ''}
 )
 
-/*
-{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE1YTcxNTlkYjlkNmZkMGJmNzkwYmUiLCJpYXQiOjE3MDUzNTUwMjl9.PE4W9Hqg2_14fxo84mqZZiVpPWr5X_3sXoZYX8Ivqdg"}
-*/

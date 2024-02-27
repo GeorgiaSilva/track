@@ -11,7 +11,7 @@ import NavLink from "../components/NavLink";
 const SigninScreen = ({navigation}) => {
 
     const {state, signin, clearErrorMessage} = useContext(AuthContext)
-    
+
     return (
         <View style={styles.container}> 
         <NavigationEvents onWillFocus={clearErrorMessage}/>
@@ -23,6 +23,7 @@ const SigninScreen = ({navigation}) => {
                 buttonText='Sign In'
                 onSubmit={signin}
             />
+            
         <NavLink 
             content="Don't have a account? Sign in instead"
             routeName="Signup"

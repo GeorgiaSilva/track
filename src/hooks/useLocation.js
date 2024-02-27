@@ -13,7 +13,7 @@ export default (shouldTrack,callback) => {
                     timeInterval: 1000,
                     distanceInterval: 10
                 },
-                callback
+                callback 
             )
             
             if(!granted) {

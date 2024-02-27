@@ -10,6 +10,7 @@ import useLocation from "../hooks/useLocation";
 import { withNavigationFocus } from "react-navigation";
 import TrackForm from "../components/TrackForm";
 import Spacer from "../components/Spacer"
+import {FontAwesome} from '@expo/vector-icons'
 const TrackCreateScreen = ({isFocused}) => {
     
     const {state,addLocation} = useContext(LocationContext)
@@ -29,6 +30,13 @@ const TrackCreateScreen = ({isFocused}) => {
         </SafeAreaView>
         
     )
+}
+TrackCreateScreen.navigationOptions = () =>{
+    return{
+        title: 'Add Track',
+        tabBarIcon: <FontAwesome name="plus" size={20} color='white' />
+
+    }
 }
 
 const styles = StyleSheet.create({
