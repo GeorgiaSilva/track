@@ -1,60 +1,27 @@
-import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
+import SearchScreen from './src/screens/SearchScreen'
+import ResultsShowScreen from './src/screens/ResultsShowScreen'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { ComentsScreen } from './src/screens/ComentsScreen'
+import { ComentsDetailScreen } from './src/screens/ComentsDetailScreen'
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import { StyleSheet, Text, View } from 'react-native';
-import TrackCreateScreen from './src/screens/TrackCreateScreen';
-import AccountScreen from './src/screens/AccountScreen';
-import SigninScreen from './src/screens/SigninScreen';
-import SignupScreen from './src/screens/SignupScreen';
-import AuthResolveScreen from './src/screens/AuthResolveScreen';
-import TrackDetailScreen from './src/screens/TrackDetailScreen';
-import TrackListScreen from './src/screens/TrackListScreen';
-import { Provider  as AuthProvider} from './src/context/AuthContext';
-import { Provider as LocationProvider } from './src/context/LocationContext';
-import { Provider as TrackProvider} from './src/context/TrackContext';
-import { setNavigator } from './src/navigationRef';
-import {FontAwesome} from '@expo/vector-icons'
-const trackListFlow = createStackNavigator({
-  TrackList: TrackListScreen,
-  TrackDetail: TrackDetailScreen
-})
 
-trackListFlow.navigationOptions = () =>{
-  return {
-      title: 'Tracks',
-      tabBarIcon: <FontAwesome name="list" size={20} color='white' />
-  }
-}
-const switchNavigator = createSwitchNavigator({
-  AuthResolve: AuthResolveScreen,
-  loginFlow: createStackNavigator({
-    Signup: SignupScreen,
-    Signin: SigninScreen,
-  }),
-  mainFlow: createMaterialBottomTabNavigator ({
-    trackListFlow,
-    TrackCreate: TrackCreateScreen,
-    Account: AccountScreen,
-  },{
-    barStyle: {backgroundColor: '#3C85BA', }
+const navigator = createStackNavigator ({
+  Search: SearchScreen,
+  ResultsShow: createMaterialBottomTabNavigator({
+    Home: ResultsShowScreen,
+    Comentario: ComentsScreen
   })
+}, 
+{
+  initialRouteName:'Search',
+  defaultNavigationOptions: {
+    title: 'Business Search'
+  }
 })
- 
 
 
 
-const App = createAppContainer(switchNavigator)
 
-export default () =>{
-  return (
-    <TrackProvider>
-      <LocationProvider>
-        <AuthProvider>
-          <App ref={(navigator)=> {setNavigator(navigator)}} />
-        </AuthProvider>
-      </LocationProvider>
-    </TrackProvider>
-  )
-}
-
+export default createAppContainer(navigator)
